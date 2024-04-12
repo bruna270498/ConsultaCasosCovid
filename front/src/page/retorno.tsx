@@ -58,7 +58,7 @@ const Main: React.FC = () => {
       console.error('Erro ao obter os dados da API-Covid-19:', error);
     }
   };  
-console.log(stateCovid);
+// console.log(Object.values(covidData).length);
 
   return (
     <div>
@@ -75,14 +75,16 @@ console.log(stateCovid);
       <div>
         <h2>Casos Confirmados: {totalConfirmed}</h2>
         <h2>Total de Mortos: {totalDeaths}</h2>
-        {Object.values(covidData).map((item: CovidData, index: number) => (
+        {Object.values(covidData).length > 1 && (
+           Object.values(covidData).map((item: CovidData, index: number) => (
             <div key={index}>
                <h2>Dados Estaduais:</h2>
                <h3>{item.ProvinciaEstado}</h3>
                <p>Confirmados: {item.Confirmados}</p>
                <p>Mortos: {item.Mortos}</p>
            </div>
-            ))}
+            ))
+        )}
       </div>
     </div>
   );
